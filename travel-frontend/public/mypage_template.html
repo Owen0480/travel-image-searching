@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>User Profile and Settings - TravelAI</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1392ec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#0d161b] dark:text-slate-200 min-h-screen">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Navigation Bar -->
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-[#e7eef3] dark:border-slate-800 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-4 text-primary">
+                        <div class="size-8">
+                            <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_6_319)">
+                                    <path
+                                        d="M8.57829 8.57829C5.52816 11.6284 3.451 15.5145 2.60947 19.7452C1.76794 23.9758 2.19984 28.361 3.85056 32.3462C5.50128 36.3314 8.29667 39.7376 11.8832 42.134C15.4698 44.5305 19.6865 45.8096 24 45.8096C28.3135 45.8096 32.5302 44.5305 36.1168 42.134C39.7033 39.7375 42.4987 36.3314 44.1494 32.3462C45.8002 28.361 46.2321 23.9758 45.3905 19.7452C44.549 15.5145 42.4718 11.6284 39.4217 8.57829L24 24L8.57829 8.57829Z"
+                                        fill="currentColor"></path>
+                                </g>
+                                <defs>
+                                    <clippath id="clip0_6_319">
+                                        <rect fill="white" height="48" width="48"></rect>
+                                    </clippath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <h2
+                            class="text-[#0d161b] dark:text-white text-xl font-bold leading-tight tracking-[-0.015em] font-display">
+                            TravelAI</h2>
+                    </div>
+                    <div class="flex items-center gap-9">
+                        <a class="text-[#0d161b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors"
+                            href="#">Discover</a>
+                        <a class="text-[#0d161b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors"
+                            href="#">Destinations</a>
+                        <a class="text-[#0d161b] dark:text-slate-300 text-sm font-medium leading-normal hover:text-primary transition-colors"
+                            href="#">Trips</a>
+                    </div>
+                </div>
+                <div class="flex flex-1 justify-end gap-8 items-center">
+                    <label class="flex flex-col min-w-40 !h-10 max-w-64">
+                        <div
+                            class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden border border-[#e7eef3] dark:border-slate-800">
+                            <div
+                                class="text-[#4c799a] flex bg-[#e7eef3] dark:bg-slate-800 items-center justify-center px-3">
+                                <span class="material-symbols-outlined text-xl">search</span>
+                            </div>
+                            <input
+                                class="form-input flex w-full min-w-0 flex-1 border-none bg-[#e7eef3] dark:bg-slate-800 text-[#0d161b] dark:text-white focus:outline-0 focus:ring-0 h-full placeholder:text-[#4c799a] px-2 text-sm font-normal"
+                                placeholder="Find destinations..." value="" />
+                        </div>
+                    </label>
+                    <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary/20"
+                        data-alt="User profile picture placeholder"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCMHBnYdox-MKNuP8mlWE91bUS-RCdzk0VrhoHETSiEQ2WaefSqEwP7MaOTwE11O0P7bREDlGMfZDEVyMnc9czSr-JfOGBpNty7gtKv4wxEqmWYDjXzZjjdoheJ__SQ4UqZIucWvTFKEthvJkg48WaGkuBFFgmD7kkQDJpelNGFeIgeqn7HgFuEOE_Gh-wNolLZ9z6_gWjJhO5JuK4c0i3tUnVpcVLaJ0e4Ym2W8uHHnHYKcGuP8QX3a3yantIMgK3MiEGMd_tjozA");'>
+                    </div>
+                </div>
+            </header>
+            <main class="flex flex-1 justify-center py-10 px-4 md:px-40">
+                <div class="layout-content-container flex flex-col max-w-[800px] flex-1 gap-6">
+                    <!-- Profile Header -->
+                    <div
+                        class="bg-white dark:bg-slate-900 rounded-xl p-8 border border-[#e7eef3] dark:border-slate-800 shadow-sm transition-all hover:shadow-md">
+                        <div class="flex flex-col items-center gap-6">
+                            <div class="relative">
+                                <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full min-h-32 w-32 ring-4 ring-primary/10"
+                                    data-alt="Circular portrait of Alex Johnson"
+                                    style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBR41YbJJPaGl-aR3w9NhyBdydfbHuTOwPSl8ZPTAt6jckVNnnI0_eSpP26HUU1nttkJA8xPemGfnndhX4lobWhaeJd2QTLD3oac-TwbugbhLXhb4POpTigSlzRach3paafVvYdHbOnOpU3o1NRziASOYpA-Ys0jBFC_hJkqESBsa5YmfErTBYyn9SvoUeIWHvFG-kRU3qSE5R78r-3dXiHq5vSpLM8zE6N7nqijAZ2UCWBLv316yN5i_kFqUFOAwwKvv86N8TtYhg");'>
+                                </div>
+                                <div
+                                    class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full shadow-lg cursor-pointer hover:bg-primary/90 transition-colors">
+                                    <span class="material-symbols-outlined text-sm">edit</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col items-center text-center">
+                                <h1 id="user-name"
+                                    class="text-[#0d161b] dark:text-white text-3xl font-bold leading-tight tracking-[-0.015em]">
+                                    Alex Johnson</h1>
+                                <p id="user-email"
+                                    class="text-[#4c799a] dark:text-slate-400 text-base font-normal mt-1">
+                                    alex.johnson@travelai.io</p>
+                                <div
+                                    class="flex items-center gap-2 mt-3 px-4 py-1.5 bg-background-light dark:bg-slate-800 rounded-full">
+                                    <span class="material-symbols-outlined text-primary text-lg">verified_user</span>
+                                    <p
+                                        class="text-[#4c799a] dark:text-slate-400 text-xs font-semibold uppercase tracking-wider">
+                                        Member since Jan 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Account Menu Section -->
+                    <div class="flex flex-col gap-2">
+                        <h3
+                            class="text-[#0d161b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] px-2 py-2">
+                            Account Management</h3>
+                        <div
+                            class="bg-white dark:bg-slate-900 rounded-xl border border-[#e7eef3] dark:border-slate-800 overflow-hidden divide-y divide-[#e7eef3] dark:divide-slate-800 shadow-sm">
+                            <!-- Travel History -->
+                            <div
+                                class="flex items-center gap-4 px-6 min-h-[84px] py-4 justify-between hover:bg-primary/5 cursor-pointer transition-colors group">
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="text-primary flex items-center justify-center rounded-xl bg-primary/10 shrink-0 size-12 transition-transform group-hover:scale-105">
+                                        <span class="material-symbols-outlined">work</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p
+                                            class="text-[#0d161b] dark:text-white text-base font-semibold leading-normal">
+                                            Travel History</p>
+                                        <p
+                                            class="text-[#4c799a] dark:text-slate-400 text-sm font-normal leading-normal">
+                                            View your past AI-recommended trips and itineraries</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 text-[#0d161b] dark:text-slate-300">
+                                    <span class="material-symbols-outlined">chevron_right</span>
+                                </div>
+                            </div>
+                            <!-- Saved Places -->
+                            <div
+                                class="flex items-center gap-4 px-6 min-h-[84px] py-4 justify-between hover:bg-primary/5 cursor-pointer transition-colors group">
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="text-primary flex items-center justify-center rounded-xl bg-primary/10 shrink-0 size-12 transition-transform group-hover:scale-105">
+                                        <span class="material-symbols-outlined">map</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p
+                                            class="text-[#0d161b] dark:text-white text-base font-semibold leading-normal">
+                                            Saved Places</p>
+                                        <p
+                                            class="text-[#4c799a] dark:text-slate-400 text-sm font-normal leading-normal">
+                                            12 destinations and 5 hotels bookmarked</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 text-[#0d161b] dark:text-slate-300">
+                                    <span class="material-symbols-outlined">chevron_right</span>
+                                </div>
+                            </div>
+                            <!-- Settings -->
+                            <div
+                                class="flex items-center gap-4 px-6 min-h-[84px] py-4 justify-between hover:bg-primary/5 cursor-pointer transition-colors group">
+                                <div class="flex items-center gap-5">
+                                    <div
+                                        class="text-primary flex items-center justify-center rounded-xl bg-primary/10 shrink-0 size-12 transition-transform group-hover:scale-105">
+                                        <span class="material-symbols-outlined">settings</span>
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <p
+                                            class="text-[#0d161b] dark:text-white text-base font-semibold leading-normal">
+                                            Preferences &amp; Privacy</p>
+                                        <p
+                                            class="text-[#4c799a] dark:text-slate-400 text-sm font-normal leading-normal">
+                                            Manage notifications, language, and security</p>
+                                    </div>
+                                </div>
+                                <div class="shrink-0 text-[#0d161b] dark:text-slate-300">
+                                    <span class="material-symbols-outlined">chevron_right</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Visual Search Prompt / Extra Value -->
+                    <div
+                        class="bg-primary/5 dark:bg-primary/10 rounded-xl p-6 border border-primary/20 flex items-center justify-between mt-4">
+                        <div class="flex items-center gap-4">
+                            <div class="text-primary">
+                                <span class="material-symbols-outlined text-3xl">image_search</span>
+                            </div>
+                            <div>
+                                <h4 class="text-[#0d161b] dark:text-white font-bold">New: Visual Destination Search</h4>
+                                <p class="text-[#4c799a] dark:text-slate-400 text-sm">Upload a photo to find similar
+                                    vibes around the globe.</p>
+                            </div>
+                        </div>
+                        <button
+                            class="bg-primary text-white px-5 py-2 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-all shadow-sm">Try
+                            it now</button>
+                    </div>
+                    <!-- Bottom Actions -->
+                    <div class="flex flex-col items-center gap-4 mt-8 pb-10">
+                        <div class="flex items-center gap-6">
+                            <button id="logout-button"
+                                class="text-[#4c799a] dark:text-slate-400 hover:text-[#0d161b] dark:hover:text-white text-sm font-medium flex items-center gap-2 transition-colors">
+                                <span class="material-symbols-outlined text-lg">logout</span>
+                                Log out
+                            </button>
+                            <div class="w-px h-4 bg-[#e7eef3] dark:bg-slate-800"></div>
+                            <button id="withdraw-button"
+                                class="text-red-500/70 hover:text-red-500 text-sm font-medium flex items-center gap-2 transition-colors">
+                                <span class="material-symbols-outlined text-lg">delete_forever</span>
+                                Delete Account
+                            </button>
+                        </div>
+                        <p class="text-[#4c799a] dark:text-slate-500 text-xs font-normal">TravelAI v2.4.0 — Made with ❤️
+                            for world travelers</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

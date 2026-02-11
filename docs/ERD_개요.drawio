@@ -1,0 +1,50 @@
+<mxfile host="app.diagrams.net" modified="2026-02-05T00:00:00.000Z" agent="Cursor" version="24.7.10" type="device">
+  <diagram id="erd" name="ERD 개요">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- User -->
+        <mxCell id="User" value="User&#xa;id (PK)&#xa;email&#xa;name&#xa;provider&#xa;created_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="170" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- RefreshToken -->
+        <mxCell id="RT" value="RefreshToken&#xa;id (PK)&#xa;user_id (FK)&#xa;token&#xa;expires_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2ecc71;strokeColor=#27ae60;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="180" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- SavedConversation -->
+        <mxCell id="SC" value="SavedConversation&#xa;id (PK)&#xa;user_id (FK)&#xa;title&#xa;created_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#8e44ad;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="320" y="240" width="200" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- ConversationMessage (선택적) -->
+        <mxCell id="CM" value="ConversationMessage&#xa;id (PK)&#xa;conversation_id (FK)&#xa;role&#xa;content&#xa;created_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f39c12;strokeColor=#d68910;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="580" y="240" width="220" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- TravelStyleResult -->
+        <mxCell id="TSR" value="TravelStyleResult&#xa;id (PK)&#xa;user_id (FK)&#xa;type / scores(json)&#xa;created_at" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#16a085;strokeColor=#13856e;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="320" y="420" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges (1-N) -->
+        <mxCell id="e1" value="1 - N" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="User" target="RT">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="1 - N" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="User" target="SC">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="1 - N" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="SC" target="CM">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="1 - N" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="User" target="TSR">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

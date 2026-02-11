@@ -1,0 +1,45 @@
+<mxfile host="app.diagrams.net" modified="2026-02-05T00:00:00.000Z" agent="Cursor" version="24.7.10" type="device">
+  <diagram id="erd-physical" name="ERD (물리)">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Physical tables (MariaDB) -->
+        <mxCell id="T_USERS" value="users (MariaDB)&#xa;PK user_id : BIGINT&#xa;email : VARCHAR(100) UNIQUE NOT NULL&#xa;password : VARCHAR(255) NULL&#xa;full_name : VARCHAR(50) NOT NULL&#xa;oauth_provider : VARCHAR(20) NOT NULL&#xa;oauth_identifier : VARCHAR(255) UNIQUE NULL&#xa;role : VARCHAR(20) NOT NULL&#xa;status : VARCHAR(20) NOT NULL&#xa;social_access_token : VARCHAR(1000) NULL&#xa;created_at : DATETIME&#xa;updated_at : DATETIME" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="90" width="320" height="280" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="T_SAVED" value="saved_conversations (MariaDB)&#xa;PK conversation_id : BIGINT&#xa;FK user_id → users.user_id (NOT NULL)&#xa;title : VARCHAR(200) NULL&#xa;messages : TEXT NOT NULL (JSON 문자열)&#xa;created_at : DATETIME&#xa;updated_at : DATETIME" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#8e44ad;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="90" width="320" height="220" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="T_STYLE" value="travel_style_results (MariaDB)&#xa;PK result_id : BIGINT&#xa;FK user_id → users.user_id (NULL 가능)&#xa;matched_type : VARCHAR(100) NOT NULL&#xa;user_interests : VARCHAR(500) NOT NULL (JSON 문자열)&#xa;description : TEXT NULL&#xa;created_at : DATETIME&#xa;updated_at : DATETIME" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#16a085;strokeColor=#13856e;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="340" width="320" height="240" as="geometry"/>
+        </mxCell>
+
+        <!-- Redis (physical store) -->
+        <mxCell id="R_RT" value="refreshToken (RedisHash)&#xa;Key: email (String)&#xa;token : String&#xa;TTL: 1209600s (14일)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2ecc71;strokeColor=#27ae60;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="420" width="320" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Relationships -->
+        <mxCell id="e1" value="1 : N" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="T_USERS" target="T_SAVED">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="1 : N (nullable)" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="T_USERS" target="T_STYLE">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="이메일 키(논리 연결)" style="endArrow=block;html=1;strokeColor=#7f8c8d;dashed=1;" edge="1" parent="1" source="T_USERS" target="R_RT">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Note -->
+        <mxCell id="note" value="※ 물리 ERD: 실제 저장소 관점&#xa;- users/saved_conversations/travel_style_results는 MariaDB 테이블&#xa;- refreshToken은 RedisHash (RDB 테이블 아님)&#xa;- created_at/updated_at은 BaseEntity(JPA Auditing)로 자동 관리" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecf0f1;strokeColor=#bdc3c7;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="790" y="210" width="330" height="160" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

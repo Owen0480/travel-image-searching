@@ -1,0 +1,101 @@
+<mxfile host="app.diagrams.net" modified="2026-02-05T00:00:00.000Z" agent="Cursor" version="24.7.10" type="device">
+  <diagram id="project-architecture" name="프로젝트 구조도(아키텍처)">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="여행 추천 시스템 아키텍처 (React + Spring Boot + FastAPI + AI/RAG)" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontStyle=1;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="1080" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Frontend -->
+        <mxCell id="FE" value="Frontend&#xa;travel-frontend&#xa;React + Vite (5173)&#xa;Pages: /chat, /image-search, /travel-style, /mypage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eef6ff;strokeColor=#2980b9;fontColor=#2c3e50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="100" width="320" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Spring Boot -->
+        <mxCell id="SB" value="Backend API&#xa;travel-springboot (8081)&#xa;Auth(OAuth/JWT), Chat Proxy, Recommend Proxy, Travel-Style API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f2f2f2;strokeColor=#7f8c8d;fontColor=#2c3e50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="440" y="100" width="340" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- FastAPI -->
+        <mxCell id="FA" value="AI Server&#xa;backend-fastapi (8000)&#xa;Image Recommend, Travel-Chat, Travel-Style 분석" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f7f0ff;strokeColor=#8e44ad;fontColor=#2c3e50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="100" width="320" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Datastores -->
+        <mxCell id="DB" value="MariaDB&#xa;users / saved_conversations / travel_style_results" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#16a085;strokeColor=#13856e;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="310" width="220" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="Redis" value="Redis&#xa;RefreshToken(RedisHash)&#xa;TTL 14일" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#2ecc71;strokeColor=#27ae60;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="310" width="180" height="90" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="Chroma" value="ChromaDB (Vector DB)&#xa;backend-fastapi/chroma_db/&#xa;place 문서 청크 임베딩" style="shape=cylinder;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#8e44ad;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="880" y="310" width="260" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Data sources -->
+        <mxCell id="CSV" value="CSV 데이터&#xa;place.csv / tour.csv&#xa;(장소/사진 메타)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf2e9;strokeColor=#d35400;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="880" y="420" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="IMG" value="이미지 폴더&#xa;backend-fastapi/images/&#xa;(추천 카드 이미지 서빙)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fdf2e9;strokeColor=#d35400;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="70" y="310" width="320" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- External APIs -->
+        <mxCell id="Gemini" value="Google Gemini API&#xa;(가이드 생성/설명)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#f39c12;fontColor=#2c3e50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="560" width="320" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="NaverMap" value="Naver Map&#xa;(상세보기 링크)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#f39c12;fontColor=#2c3e50;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="560" width="320" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" value="HTTP(S) 요청" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="FE" target="SB">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="Proxy 호출" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="SB" target="FA">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e3" value="Auth/Conversation/Style 저장" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="SB" target="DB">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e4" value="RefreshToken 저장" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="SB" target="Redis">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e5" value="RAG Retrieval" style="endArrow=block;html=1;strokeColor=#8e44ad;" edge="1" parent="1" source="FA" target="Chroma">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="인덱싱(초기 1회)" style="endArrow=block;html=1;strokeColor=#d35400;" edge="1" parent="1" source="CSV" target="Chroma">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e7" value="가이드 생성" style="endArrow=block;html=1;strokeColor=#f39c12;" edge="1" parent="1" source="FA" target="Gemini">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" value="이미지 정적 서빙&#xa;/images/..." style="endArrow=block;html=1;strokeColor=#d35400;" edge="1" parent="1" source="FA" target="IMG">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" value="카드 이미지 로드" style="endArrow=block;html=1;strokeColor=#d35400;" edge="1" parent="1" source="FE" target="IMG">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e10" value="상세보기 링크" style="endArrow=block;html=1;strokeColor=#f39c12;dashed=1;" edge="1" parent="1" source="FE" target="NaverMap">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend" value="Legend&#xa;- FE↔SB: 사용자 화면/API 통신&#xa;- SB↔FA: AI 기능 프록시 호출&#xa;- FA↔Chroma/Gemini: RAG + LLM&#xa;- FE↔IMG: 카드 이미지 표시" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ecf0f1;strokeColor=#bdc3c7;fontColor=#2c3e50;" vertex="1" parent="1">
+          <mxGeometry x="440" y="690" width="700" height="80" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

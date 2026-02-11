@@ -1,0 +1,135 @@
+<mxfile host="app.diagrams.net" modified="2026-02-05T00:00:00.000Z" agent="Cursor" version="24.7.10" type="device">
+  <diagram id="image-recommend-flow" name="이미지 추천 로직">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Swimlanes -->
+        <mxCell id="laneFE" value="Frontend (React)" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#eef6ff;strokeColor=#2980b9;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="20" width="360" height="740" as="geometry"/>
+        </mxCell>
+        <mxCell id="laneSB" value="Spring Boot" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#f2f2f2;strokeColor=#7f8c8d;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="360" height="740" as="geometry"/>
+        </mxCell>
+        <mxCell id="laneFA" value="FastAPI + AI" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#f7f0ff;strokeColor=#8e44ad;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="780" y="20" width="370" height="740" as="geometry"/>
+        </mxCell>
+
+        <!-- Frontend nodes -->
+        <mxCell id="S" value="시작" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e74c3c;strokeColor=#c0392b;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="laneFE">
+          <mxGeometry x="130" y="70" width="90" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="FE1" value="사진 업로드 + 취향 입력" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFE">
+          <mxGeometry x="50" y="150" width="260" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="FE2" value="FormData 생성&#xa;(file, preference)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFE">
+          <mxGeometry x="50" y="240" width="260" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="FE3" value="POST /api/v1/recommend/analyze&#xa;(Spring 8081)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFE">
+          <mxGeometry x="50" y="340" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="FE4" value="결과 카드 Top3 표시&#xa;(이미지: FastAPI /images)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFE">
+          <mxGeometry x="50" y="600" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="E" value="끝" style="ellipse;whiteSpace=wrap;html=1;fillColor=#e74c3c;strokeColor=#c0392b;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="laneFE">
+          <mxGeometry x="130" y="700" width="90" height="50" as="geometry"/>
+        </mxCell>
+
+        <!-- Spring Boot nodes -->
+        <mxCell id="SB1" value="RecommendController&#xa;file, preference 수신" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneSB">
+          <mxGeometry x="50" y="200" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="SB2" value="RecommendService.analyzeImage&#xa;(Multipart 구성)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneSB">
+          <mxGeometry x="50" y="310" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="SB3" value="POST FastAPI 8000&#xa;/api/v1/recommend/analyze" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneSB">
+          <mxGeometry x="50" y="420" width="260" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="SB4" value="응답 반환 (JSON 그대로)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneSB">
+          <mxGeometry x="50" y="540" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- FastAPI nodes -->
+        <mxCell id="FA1" value="FastAPI recommend 수신" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFA">
+          <mxGeometry x="55" y="150" width="260" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="FA2" value="CLIP: 사용자 이미지 임베딩" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFA">
+          <mxGeometry x="55" y="230" width="260" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="FA3" value="유사도 계산&#xa;(user vs db_features)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFA">
+          <mxGeometry x="55" y="310" width="260" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="DEC1" value="유사 장소 존재?&#xa;(score &gt; 0.6)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f1c40f;strokeColor=#d4ac0d;fontColor=#000000;fontStyle=1;" vertex="1" parent="laneFA">
+          <mxGeometry x="110" y="410" width="150" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="FA4" value="Top3 + CSV 장소 정보 조회" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#3498db;strokeColor=#2980b9;fontColor=#ffffff;" vertex="1" parent="laneFA">
+          <mxGeometry x="55" y="520" width="260" height="60" as="geometry"/>
+        </mxCell>
+        <mxCell id="FA5" value="ChromaDB retrieval&#xa;(preference+장소명+POI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#8e44ad;fontColor=#ffffff;" vertex="1" parent="laneFA">
+          <mxGeometry x="55" y="600" width="260" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="FA6" value="Gemini: Top1 가이드 생성&#xa;(RAG 근거)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b59b6;strokeColor=#8e44ad;fontColor=#ffffff;" vertex="1" parent="laneFA">
+          <mxGeometry x="55" y="690" width="260" height="70" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges -->
+        <mxCell id="e1" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFE" source="S" target="FE1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFE" source="FE1" target="FE2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFE" source="FE2" target="FE3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e4" value="요청" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="FE3" target="SB1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e5" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneSB" source="SB1" target="SB2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneSB" source="SB2" target="SB3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e7" value="요청" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="1" source="SB3" target="FA1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e8" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFA" source="FA1" target="FA2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e9" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFA" source="FA2" target="FA3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e10" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFA" source="FA3" target="DEC1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e11" value="Yes" style="endArrow=block;html=1;strokeColor=#27ae60;" edge="1" parent="laneFA" source="DEC1" target="FA4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e12" style="endArrow=block;html=1;strokeColor=#27ae60;" edge="1" parent="laneFA" source="FA4" target="FA5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e13" style="endArrow=block;html=1;strokeColor=#27ae60;" edge="1" parent="laneFA" source="FA5" target="FA6">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="e14" value="응답" style="endArrow=block;html=1;strokeColor=#7f8c8d;dashed=1;" edge="1" parent="1" source="FA6" target="SB4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e15" style="endArrow=block;html=1;strokeColor=#7f8c8d;" edge="1" parent="laneSB" source="SB3" target="SB4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e16" value="응답" style="endArrow=block;html=1;strokeColor=#7f8c8d;dashed=1;" edge="1" parent="1" source="SB4" target="FE4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e17" style="endArrow=block;html=1;strokeColor=#34495e;" edge="1" parent="laneFE" source="FE4" target="E">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

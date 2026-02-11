@@ -1,0 +1,38 @@
+# 대용량 데이터(원격 올리지 않음)
+국내 여행로그 데이터*/
+데이터/
+데이터
+*.zip
+
+# 환경/비밀 - 반드시 제외
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+*.egg-info/
+chroma_db/
+embedding_cache/
+
+# Node
+node_modules/
+
+# Java/Gradle
+target/
+.gradle/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# 기타
+*.log
+.DS_Store
+Thumbs.db

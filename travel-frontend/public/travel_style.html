@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Travel Type Analysis - Blue Variant</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1392ec",
+                        "primary-dark": "#0e6eb3",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101a22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen text-[#0d161b]">
+<!-- Top Navigation Bar -->
+<header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-white dark:bg-background-dark px-10 py-3 sticky top-0 z-50">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-4 text-primary">
+<div class="size-8">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-[#0d161b] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Travel AI</h2>
+</div>
+<div class="flex items-center gap-9">
+<a class="text-[#0d161b] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Discover</a>
+<a class="text-[#0d161b] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">Destinations</a>
+<a class="text-[#0d161b] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">My Trips</a>
+<a class="text-[#0d161b] dark:text-white text-sm font-medium leading-normal hover:text-primary transition-colors" href="#">AI Chat</a>
+</div>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<label class="flex flex-col min-w-40 h-10 max-w-64">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full">
+<div class="text-[#4c799a] flex border-none bg-primary/5 dark:bg-white/10 items-center justify-center pl-4 rounded-l-xl border-r-0">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#0d161b] dark:text-white focus:outline-0 focus:ring-0 border-none bg-primary/5 dark:bg-white/10 focus:border-none h-full placeholder:text-[#4c799a] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal" placeholder="Search destinations..." value=""/>
+</div>
+</label>
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User profile picture in a circular frame" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBVeQOKh8355yEh2KtLc2yBk7kxomaDuq9VI53ZtvzULNPkWrq9oZfsgZMfp4QI18vQZor91a8FzCNkG8iA7ae6GQgNPpFdapPRVSdml_4zxTnqfQ_FewqfsZ2rWkDOUIBjWLMatIUic0buu78kcy-z8AbXpIRY6KwwCsV1gv-BBjYz98lv6iffAh4uMsx3fsg-FKqMmVtVKXUafYcW_0vqNbIxfmKI8GdZAS3rbRMEYqdH9LZZ0bOtX4ISzS8OOsZ13gDeQZx4wjw");'></div>
+</div>
+</header>
+<main class="flex flex-1 flex-col items-center py-10 px-4">
+<div class="max-w-[800px] w-full bg-white dark:bg-slate-900 rounded-xl shadow-xl shadow-primary/5 border border-primary/10 overflow-hidden">
+<!-- Breadcrumbs -->
+<div class="flex flex-wrap gap-2 px-8 pt-8">
+<a class="text-primary text-sm font-medium hover:underline" href="#">Home</a>
+<span class="text-[#4c799a] text-sm font-medium">/</span>
+<span class="text-[#0d161b] dark:text-slate-400 text-sm font-medium">Travel Analysis</span>
+</div>
+<!-- Headline Section -->
+<div class="px-8 pt-6 pb-2 text-center">
+<div class="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">send</span>
+</div>
+<h1 class="text-[#0d161b] dark:text-white tracking-tight text-3xl font-bold leading-tight">Travel Type Analysis</h1>
+<p class="text-[#4c799a] dark:text-slate-400 text-base font-normal leading-normal mt-2">
+                    Select at least 3 interests to help our AI discover your perfect destination
+                </p>
+</div>
+<!-- Analysis Body -->
+<div class="px-8 pb-10">
+<!-- Activity Section -->
+<div class="mt-8">
+<div class="flex items-center gap-2 px-1 mb-4">
+<span class="material-symbols-outlined text-primary text-xl">hiking</span>
+<h2 class="text-[#0d161b] dark:text-white text-xl font-bold tracking-tight">Activity</h2>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Hiking</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary text-white text-sm font-medium shadow-md shadow-primary/20">Surfing</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Skiing</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Urban Exploration</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Kayaking</button>
+</div>
+</div>
+<!-- Culture/Art Section -->
+<div class="mt-8">
+<div class="flex items-center gap-2 px-1 mb-4">
+<span class="material-symbols-outlined text-primary text-xl">museum</span>
+<h2 class="text-[#0d161b] dark:text-white text-xl font-bold tracking-tight">Culture/Art</h2>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary text-white text-sm font-medium shadow-md shadow-primary/20">Museums</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Architecture</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Local Festivals</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary text-white text-sm font-medium shadow-md shadow-primary/20">History</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Gourmet Food</button>
+</div>
+</div>
+<!-- Healing Section -->
+<div class="mt-8">
+<div class="flex items-center gap-2 px-1 mb-4">
+<span class="material-symbols-outlined text-primary text-xl">spa</span>
+<h2 class="text-[#0d161b] dark:text-white text-xl font-bold tracking-tight">Healing</h2>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Spa &amp; Wellness</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Beach Lounging</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Nature Walks</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Yoga Retreats</button>
+<button class="px-4 py-2 rounded-full border border-primary/20 bg-primary/5 text-[#0d161b] dark:text-slate-200 text-sm font-medium hover:bg-primary/10 transition-all">Hot Springs</button>
+</div>
+</div>
+<!-- Selection Status & CTA -->
+<div class="mt-12 pt-8 border-t border-primary/10 flex flex-col items-center">
+<div class="mb-6 flex items-center gap-2">
+<span class="text-sm font-medium text-[#4c799a] dark:text-slate-400">Selected Interests</span>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-bold">3/3</span>
+</div>
+<button class="w-full max-w-md bg-primary hover:bg-primary-dark text-white text-lg font-bold py-4 px-8 rounded-xl transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">auto_awesome</span>
+                        Analyze Travel Type
+                    </button>
+<p class="mt-4 text-xs text-[#4c799a] dark:text-slate-500">
+                        Our AI will process your selections to generate personalized destination recommendations.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Visual Search Teaser -->
+<div class="mt-12 flex gap-6 max-w-[800px] w-full">
+<div class="flex-1 bg-white dark:bg-slate-900 p-6 rounded-xl border border-primary/10 flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">image_search</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d161b] dark:text-white">Visual Search</h3>
+<p class="text-sm text-[#4c799a] dark:text-slate-400">Upload a photo to find similar vibes.</p>
+</div>
+</div>
+<div class="flex-1 bg-white dark:bg-slate-900 p-6 rounded-xl border border-primary/10 flex items-center gap-4">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">forum</span>
+</div>
+<div>
+<h3 class="font-bold text-[#0d161b] dark:text-white">AI Chat Assistant</h3>
+<p class="text-sm text-[#4c799a] dark:text-slate-400">Chat with our AI for deep planning.</p>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto py-10 px-4 text-center border-t border-primary/5">
+<p class="text-sm text-[#4c799a]">© 2024 Travel AI Discovery Platform. All rights reserved.</p>
+</footer>
+</body></html>
