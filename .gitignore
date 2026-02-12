@@ -36,3 +36,11 @@ build/
 *.log
 .DS_Store
 Thumbs.db
+
+# 개인 폴더 (팀 공유 제외)
+어치/
+
+# 팀 repo는 각 폴더에서 별도 Git 연결 (Owen0480/backend-fastapi, travel-frontend, travel-backend-springboot)
+backend-fastapi/
+travel-frontend/
+travel-springboot/
